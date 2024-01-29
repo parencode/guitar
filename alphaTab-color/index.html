@@ -1,1 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8" />
+    <title>AlphaTabColor</title>
+    <script src="./lib/alphaTabv1.2.3_colored.min.js"></script>
+    <link rel="stylesheet" href="./lib/font/releases/v5.15.4/css/free.min.css">
+    <style type="text/css">
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
+
+    .at-wrap {
+        width: 80vw;
+        height: 80vh;
+        margin: 0 auto;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .at-content {
+        position: relative;
+        overflow: hidden;
+        flex: 1 1 auto;
+    }
+
+    /** Sidebar **/
+    .at-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        max-width: 70px;
+        width: auto;
+        display: flex;
+        align-content: stretch;
+        z-index: 1001;
+        overflow: hidden;
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        background: #f7f7f7;
+    }
+
+    .at-sidebar:hover {
+        max-width: 400px;
+        transition: max-width 0.2s;
+        overflow-y: auto;
+    }
+
+    .at-viewport {
+        overflow-y: auto;
+        position: absolute;
+        top: 0;
+        left: 70px;
+        right: 0;
+        bottom: 0;
+        padding-right: 20px;
+    }
+
+    .at-footer {
+        flex: 0 0 auto;
+        background: #436d9d;
+        color: #fff;
+    }
+
+    /** Overlay **/
+
+    .at-overlay {
+        /** Fill Parent */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1002;
+
+        /* Blurry dark shade */
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.5);
+
+        /** center content */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .at-overlay-content {
+        /* white box with drop-shadow */
+        margin-top: 20px;
+        background: #fff;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+        padding: 10px;
+    }
+
+    /** Track selector **/
+    .at-track {
+        display: flex;
+        position: relative;
+        padding: 5px;
+        transition: background 0.2s;
+        cursor: pointer;
+    }
+
+    .at-track:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .at-track>.at-track-icon,
+    .at-track>.at-track-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .at-track>.at-track-icon {
+        flex-shrink: 0;
+        font-size: 32px;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+        width: 64px;
+        height: 64px;
+        margin-right: 5px;
+        align-items: center;
+    }
+
+    .at-track-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .at-track:hover>.at-track-icon {
+        opacity: 0.8;
+    }
+
+    .at-track.active {
+        background: rgba(0, 0, 0, 0.03);
+    }
+
+    .at-track.active>.at-track-icon {
+        color: #4972a1;
+        opacity: 1;
+    }
+
+    .at-track>.at-track-name {
+        font-weight: 500;
+    }
+
+    /** Footer **/
+    .at-controls {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: space-between;
+        background: #000000;
+        color: #fff;
+    }
+
+    .at-controls>div {
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: center;
+    }
+
+    .at-controls>div>* {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 4px;
+        margin: 0 3px;
+    }
+
+    .at-controls .btn {
+        color: #fff;
+        border-radius: 0;
+        height: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .at-controls .btn.disabled {
+        cursor: progress;
+        opacity: 0.5;
+    }
+
+    .at-controls a.active {
+        background: #5588c7;
+        text-decoration: none;
+    }
+
+    .at-controls .btn i {
+        vertical-align: top;
+    }
+
+    .at-controls select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        width: 100%;
+        height: 40px;
+        background: #272c32;
+        padding: 4px 10px;
+        color: #fff;
+        font-size: 16px;
+        text-align-last: center;
+        text-align: center;
+        -ms-text-align-last: center;
+        -moz-text-align-last: center;
+        cursor: pointer;
+    }
+
+    .at-song-title {
+        font-weight: bold;
+    }
+
+    .at-cursor-bar {
+        /* Defines the color of the bar background when a bar is played */
+        /*        background: rgb(100, 100, 100,  0.1); /*rgba(255, 242, 0, 0.2);*/
+        border: 1px solid;
+    }
+
+    .at-selection div {
+        /* Defines the color of the selection background */
+        background: rgba(125, 125, 125, 0.1);
+    }
+
+    .at-cursor-beat {
+        /* Defines the beat cursor */
+        background: rgba(64, 64, 255, 0.75);
+        width: 3px;
+    }
+
+    .at-highlight * {
+        /* Defines the color of the music symbols when they are being played (svg) */
+        fill: #0078ff;
+        stroke: #0078ff;
+    }
+
+
+    /*.button {
+    background-color: var(--ifm-button-background-color);
+    border: var(--ifm-button-border-width) solid var(--ifm-button-border-color);
+    border-radius: var(--ifm-button-border-radius);
+    cursor: pointer;
+    font-size: calc(.875rem*var(--ifm-button-size-multiplier));
+    font-weight: var(--ifm-button-font-weight);
+    line-height: 1.5;
+    padding: calc(var(--ifm-button-padding-vertical)*var(--ifm-button-size-multiplier)) calc(var(--ifm-button-padding-horizontal)*var(--ifm-button-size-multiplier));
+    text-align: center;
+    transition-duration: var(--ifm-button-transition-duration);
+    transition-property: color,background,border-color;
+    -webkit-user-select: none;
+    user-select: none;
+}*/
+
+    .muteOn {
+        color: red;
+    }
+
+    .soloOn {
+        color: green;
+    }
+
+    .ios-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+        background-color: #007aff;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+    </style>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <div class="at-wrap">
+        <div class="at-overlay">
+            <div class="at-overlay-content">
+                Music sheet is loading
+            </div>
+        </div>
+        <div class="at-content">
+            <div class="at-sidebar">
+                <div class="at-sidebar-content">
+                    <div class="at-track-list"></div>
+                </div>
+            </div>
+            <div class="at-viewport">
+                <div class="at-main"></div>
+            </div>
+        </div>
+        <div class="at-controls">
+            <div class="at-controls-left">
+                <a class="btn at-open-folder">
+                    <i class="fas fa-folder"></i>
+                </a>
+                <a class="btn at-player-stop disabled">
+                    <i class="fas fa-step-backward"></i>
+                </a>
+                <a class="btn at-player-play-pause disabled">
+                    <i class="fas fa-play"></i>
+                </a>
+                <div class="at-speed">
+                    <select>
+                        <option value="0.25">0.25x</option>
+                        <option value="0.5">0.50x</option>
+                        <option value="0.75">0.75x</option>
+                        <option value="0.9">0.90x</option>
+                        <option value="1" selected>1.00x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.50x</option>
+                        <option value="2">2.00x</option>
+                    </select>
+                </div>
+                <span class="at-player-progress">0%</span>
+                <div class="at-song-info">
+                    <span class="at-song-title"></span> -
+                    <span class="at-song-artist"></span>
+                </div>
+                <div class="at-song-position">00:00 / 00:00</div>
+            </div>
+            <div class="at-controls-right">
+                <a class="btn toggle at-count-in">
+                    <i class="fas fa-hourglass-half"></i>
+                </a>
+                <a class="btn at-metronome">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="btn at-loop">
+                    <i class="fas fa-retweet"></i>
+                </a>
+                <a class="btn at-print">
+                    <i class="fas fa-print"></i>
+                </a>
+                <div class="at-zoom">
+                    <i class="fas fa-eye"></i>
+                    <select>
+                        <option value="25">25%</option>
+                        <option value="50">50%</option>
+                        <option value="75">75%</option>
+                        <option value="90">90%</option>
+                        <option value="100" selected>100%</option>
+                        <option value="110">110%</option>
+                        <option value="125">125%</option>
+                        <option value="150">150%</option>
+                        <option value="200">200%</option>
+                    </select>
+                </div>
+                <div class="at-layout">
+                    <select>
+                        <option value="horizontal">Horizontal</option>
+                        <option value="page" selected>Page</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template id="at-track-template">
+        <div class="at-track">
+            <div class="at-track-icon">
+                <i class="fas fa-guitar"></i>
+            </div>
+            <div class="at-track-details">
+                <div class="at-track-name"></div>
+                <div class="at-track-controls">
+                    <button type="button" onClick="" class="button button--danger button--sm  mute ">
+                        Mute
+                    </button>
+                    <button type="button" onClick="" class="button button--success button--sm solo ">
+                        Solo
+                    </button>
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" min="0" max="16" ref="_volumeSlider" defaultValue="16" onInput="" onClick="" class="at-track-volume" />
+                </div>
+            </div>
+        </div>
+    </template>
+    <div id="modes-container" style="text-align:center">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">C Ionian: Brillante, feliz, optimista</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">D Dorian: Suave, melancólico, misterioso</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">E Phrygian: Intenso, dramático, exótico</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">F Lydian: Brillante, exótico, aventurero</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">G Mixolydian: Distinto, con un toque de blues, relajado</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">A Aeolian: Oscuro, melancólico, triste</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div>
+                <div writing-mode="vertical-lr" style="font-size: 12px;">B Locrian: Tenso, inquietante, disonante</div><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(123, 63, 157); border-radius: 0px; width: 80px; opacity: 1;">B</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 28, 125); border-radius: 0px; width: 80px; opacity: 1;">C</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(164, 194, 255); border-radius: 0px; width: 80px; opacity: 0.2;">C#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(0, 191, 255); border-radius: 0px; width: 80px; opacity: 1;">D</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(143, 215, 193); border-radius: 0px; width: 80px; opacity: 0.2;">D#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(61, 171, 96); border-radius: 0px; width: 80px; opacity: 1;">E</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(156, 220, 77); border-radius: 0px; width: 80px; opacity: 1;">F</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(216, 223, 161); border-radius: 0px; width: 80px; opacity: 0.2;">F#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(240, 229, 0); border-radius: 0px; width: 80px; opacity: 1;">G</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(255, 185, 111); border-radius: 0px; width: 80px; opacity: 0.2;">G#</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(244, 0, 9); border-radius: 0px; width: 80px; opacity: 1;">A</button></span><span style="position: relative;"><button class="ios-btn" style="background-color: rgb(201, 122, 255); border-radius: 0px; width: 80px; opacity: 0.2;">A#</button></span>
+            </div>
+        </div>
+    </div>
+    <div id='alphatab' style='text-align:center'>
+        <a href="../guitar">La guitarra</a>
+    </div>
+    <footer style="text-align:center">
+        <p>© 2023 <a href="https://periodicspace.com/">Periodic Space</a><br><span style="font-size:8px">Todos los derechos reservados.</span></p>
+    </footer>
+    <input type="file" id="fileInput" accept=".gp,.gp3,.gp4,.gp5,.gpx,.musicxml,.mxml,.xml,.capx" style="display: none;" />
+
+    <script type="text/javascript">
+    const wrapper=document.querySelector(".at-wrap"),main=wrapper.querySelector(".at-main"),settings={file:"./songs/canon.gp",player:{enablePlayer:!0,soundFont:"./lib/sonivox.sf2",scrollElement:wrapper.querySelector(".at-viewport")}},api=new alphaTab.AlphaTabApi(main,settings),overlay=wrapper.querySelector(".at-overlay");function createTrackItem(a){const t=document.querySelector("#at-track-template").content.cloneNode(!0).firstElementChild;return t.querySelector(".at-track-name").innerText=a.name,t.track=a,t.onclick=e=>{e.stopPropagation(),api.renderTracks([a])},t.querySelector(".mute").onclick=e=>{e.preventDefault(),e.stopPropagation(),a.playbackInfo.isMute=!a.playbackInfo.isMute,a.playbackInfo.isMute?t.querySelector(".mute").classList.add("muteOn"):t.querySelector(".mute").classList.remove("muteOn"),api.changeTrackMute([a],a.playbackInfo.isMute)},t.querySelector(".solo").onclick=e=>{e.preventDefault(),e.stopPropagation(),a.playbackInfo.isSolo=!a.playbackInfo.isSolo,a.playbackInfo.isSolo?t.querySelector(".solo").classList.add("soloOn"):t.querySelector(".solo").classList.remove("soloOn"),api.changeTrackSolo([a],a.playbackInfo.isSolo)},t.querySelector(".at-track-volume").onclick=e=>{e.preventDefault(),e.stopPropagation();e=t.querySelector(".at-track-volume").value;api.changeTrackVolume([a],e/a.playbackInfo.volume)},t}api.renderStarted.on(()=>{overlay.style.display="flex"}),api.renderFinished.on(()=>{overlay.style.display="none"});const trackList=wrapper.querySelector(".at-track-list"),countIn=(api.scoreLoaded.on(e=>{trackList.innerHTML="",e.tracks.forEach(e=>{trackList.appendChild(createTrackItem(e))})}),api.renderStarted.on(()=>{const a=new Map;api.tracks.forEach(e=>{a.set(e.index,e)}),trackList.querySelectorAll(".at-track").forEach(e=>{a.has(e.track.index)?e.classList.add("active"):e.classList.remove("active")})}),api.scoreLoaded.on(e=>{wrapper.querySelector(".at-song-title").innerText=e.title,wrapper.querySelector(".at-song-artist").innerText=e.artist}),wrapper.querySelector(".at-controls .at-count-in")),metronome=(countIn.onclick=()=>{countIn.classList.toggle("active"),countIn.classList.contains("active")?api.countInVolume=1:api.countInVolume=0},wrapper.querySelector(".at-controls .at-metronome")),loop=(metronome.onclick=()=>{metronome.classList.toggle("active"),metronome.classList.contains("active")?api.metronomeVolume=1:api.metronomeVolume=0},wrapper.querySelector(".at-controls .at-loop")),zoom=(loop.onclick=()=>{loop.classList.toggle("active"),api.isLooping=loop.classList.contains("active")},wrapper.querySelector(".at-controls .at-print").onclick=()=>{api.print()},wrapper.querySelector(".at-controls .at-zoom select")),layout=(zoom.onchange=()=>{var e=parseInt(zoom.value)/100;api.settings.display.scale=e,api.updateSettings(),api.render()},wrapper.querySelector(".at-controls .at-layout select")),playerIndicator=(layout.onchange=()=>{switch(layout.value){case"horizontal":api.settings.display.layoutMode=alphaTab.LayoutMode.Horizontal;break;case"page":api.settings.display.layoutMode=alphaTab.LayoutMode.Page}api.updateSettings(),api.render()},wrapper.querySelector(".at-controls .at-player-progress")),playPause=(api.soundFontLoad.on(e=>{e=Math.floor(e.loaded/e.total*100);playerIndicator.innerText=e+"%"}),api.playerReady.on(()=>{playerIndicator.style.display="none"}),wrapper.querySelector(".at-controls .at-player-play-pause")),stop=wrapper.querySelector(".at-controls .at-player-stop");function formatDuration(e){var a=(e=e/1e3)/60|0,e=e-60*a|0;return String(a).padStart(2,"0")+":"+String(e).padStart(2,"0")}playPause.onclick=e=>{e.target.classList.contains("disabled")||api.playPause()},stop.onclick=e=>{e.target.classList.contains("disabled")||api.stop()},api.playerReady.on(()=>{playPause.classList.remove("disabled"),stop.classList.remove("disabled")}),api.playerStateChanged.on(e=>{var a=playPause.querySelector("i.fas");e.state===alphaTab.synth.PlayerState.Playing?(a.classList.remove("fa-play"),a.classList.add("fa-pause")):(a.classList.remove("fa-pause"),a.classList.add("fa-play"))});const songPosition=wrapper.querySelector(".at-song-position");let previousTime=-1;api.playerPositionChanged.on(e=>{(e.currentTime/1e3|0)!=previousTime&&(songPosition.innerText=formatDuration(e.currentTime)+" / "+formatDuration(e.endTime))});const speed=wrapper.querySelector(".at-controls .at-speed select"),openFolder=(speed.onchange=()=>{var e=speed.value;api.playbackSpeed=e},window.addEventListener("keydown",function(e){32===e.keyCode&&e.preventDefault()}),window.onkeydown=function(e){return!(32==e.keyCode&&e.target==document.body)},document.body.onkeyup=function(e){32==e.keyCode&&e.target==document.body&&(e.preventDefault(),api.playPause())},wrapper.querySelector(".at-controls .at-open-folder"));openFolder.onclick=e=>{var a=document.getElementById("fileInput");e.target.classList.contains("disabled")||a.click()},fileInput.addEventListener("change",e=>{var a,e=e.target.files[0];e&&((a=new FileReader).onload=e=>{api.load(e.target.result,[0])},a.readAsArrayBuffer(e))});
+    </script>
+</body>
+
+</html>
