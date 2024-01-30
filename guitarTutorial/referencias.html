@@ -1,1 +1,834 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+
+   
+body {
+    max-width: 80%;
+        margin: 0 auto;
+}
+
+/*@media (min-width: 601px)
+body {
+    width: 99.99999%;
+}*/
+    h2 {
+        text-align: center;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    td {
+        border: 1px solid black;
+
+    }
+
+    table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table td,
+    table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #cccccc;
+    }
+
+    table tr:hover {
+        background-color: #ddd;
+    }
+
+    table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #333333;
+        color: white;
+    }
+
+
+    table table {
+        border-collapse: collapse;
+    }
+
+
+    .chord td {
+        width: 8.33%;
+        height: 20px;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    .dot {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        border-radius: 50%;
+/*        margin: 5px;*/
+        color: white;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>Efectos</h2>
+    <table class="">
+        <thead>
+            <tr>
+                <th>Símbolo</th>
+                <th>Nombre del efecto</th>
+                <th>Descripción breve</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>/</td>
+                <td>Slide</td>
+                <td>Mover un dedo de una cuerda a otra sin soltar la cuerda para crear un efecto de deslizamiento.</td>
+            </tr>
+            <tr>
+                <td>\</td>
+                <td>Reverse slide</td>
+                <td>Movimiento inverso al slide, se desliza de una nota alta a una nota baja.</td>
+            </tr>
+            <tr>
+                <td>~</td>
+                <td>Vibrato</td>
+                <td>Agitar la cuerda en un movimiento rápido y repetitivo para crear una fluctuación en el tono.</td>
+            </tr>
+            <tr>
+                <td>tr</td>
+                <td>Trill</td>
+                <td>Alternar rápidamente entre dos notas cercanas para crear un efecto de trémolo.</td>
+            </tr>
+            <tr>
+                <td>h</td>
+                <td>Hammer-On</td>
+                <td>Tocar una nota sin puntearla y luego agregar un dedo en un traste superior para crear una nota más alta.</td>
+            </tr>
+            <tr>
+                <td>p</td>
+                <td>Pull-Off</td>
+                <td>Soltar un dedo en una cuerda inferior para hacer sonar una nota más baja.</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>Bend</td>
+                <td>Curvar una cuerda hacia arriba para aumentar el tono de la nota.</td>
+            </tr>
+            <tr>
+                <td>r</td>
+                <td>Release</td>
+                <td>Soltar una cuerda curvada para que vuelva a su tono original.</td>
+            </tr>
+            <tr>
+                <td>pb</td>
+                <td>Pre-bend</td>
+                <td>Curvar una cuerda hacia arriba antes de tocarla para que suene como si estuviera doblada hacia abajo.</td>
+            </tr>
+            <tr>
+                <td>rpb</td>
+                <td>Release pre-bend</td>
+                <td>Soltar una cuerda que ha sido pre-bendida para que vuelva a su tono original.</td>
+            </tr>
+            <tr>
+                <td>hp</td>
+                <td>Hammer-On from nowhere</td>
+                <td>Tocar una nota en un traste superior sin puntear la cuerda y luego agregar un dedo en un traste inferior.</td>
+            </tr>
+            <tr>
+                <td>po</td>
+                <td>Pull-Off to open string</td>
+                <td>Soltar un dedo en una cuerda inferior para hacer sonar una nota más baja y luego tocar una cuerda abierta.</td>
+            </tr>
+            <tr>
+                <td>sb</td>
+                <td>Smooth bend</td>
+                <td>Curvar una cuerda hacia arriba o hacia abajo lentamente para crear un efecto suave.</td>
+            </tr>
+            <tr>
+                <td>vb</td>
+                <td>Vibrato bend</td>
+                <td>Curvar una cuerda y aplicar vibrato al mismo tiempo.</td>
+            </tr>
+            <tr>
+                <td>tp</td>
+                <td>Tapped bend</td>
+                <td>Tocar una nota en un traste superior con el dedo de la mano derecha mientras se aplica una curva hacia arriba con la mano izquierda.</td>
+            </tr>
+            <tr>
+                <td>tp2</td>
+                <td>Two-handed tapped bend</td>
+                <td>Tocar una nota en un traste superior con el dedo de la mano derecha mientras se aplican dos curvas hacia arriba con la mano izquierda.</td>
+            </tr>
+            <tr>
+                <td>tbr</td>
+                <td>Tapped bend and release</td>
+                <td>Tocar una nota en un traste superior con el dedo de la mano derecha mientras se aplica una curva hacia arriba con la mano izquierda y luego soltar la curva para que la cuerda regrese a su tono original.</td>
+            </tr>
+            <tr>
+                <td>tb</td>
+                <td>Tap bend and hold</td>
+                <td>Tocar una nota en un traste superior con el dedo de la mano derecha mientras se aplica una curva hacia arriba con la mano izquierda y luego mantener la curva.</td>
+            </tr>
+            <tr>
+                <td>s</td>
+                <td>Slap</td>
+                <td>Golpear las cuerdas con la mano derecha para crear un efecto percusivo.</td>
+            </tr>
+            <tr>
+                <td>pizz</td>
+                <td>Pizzicato</td>
+                <td>Puntear las cuerdas con los dedos en lugar de usar una púa para crear un efecto similar al de un bajo.</td>
+            </tr>
+            <tr>
+                <td>trem</td>
+                <td>Tremolo picking</td>
+                <td>Tocar una nota repetidamente y rápidamente con la púa para crear un efecto de tremolo.</td>
+            </tr>
+            <tr>
+                <td>mute</td>
+                <td>Palm mute</td>
+                <td>Colocar la palma de la mano derecha sobre las cuerdas cerca del puente para crear un efecto amortiguado.</td>
+            </tr>
+            <tr>
+                <td>x</td>
+                <td>Dead note</td>
+                <td>Toque la cuerda con una mano muerta para crear un sonido amortiguado.</td>
+            </tr>
+            <tr>
+                <td>&lt;12&gt;</td>
+                <td>Natural harmonic</td>
+                <td>Tocar una cuerda en un punto específico para producir un tono armónico.</td>
+            </tr>
+            <tr>
+                <td>&lt;12b&gt;</td>
+                <td>Artificial harmonic</td>
+                <td>Tocar una cuerda con un dedo de la mano derecha en un punto específico mientras se toca una nota con la mano izquierda para producir un tono armónico.</td>
+            </tr>
+            <tr>
+                <td>&gt;</td>
+                <td>Accented note</td>
+                <td>Tocar una nota con un acento o énfasis en el tono.</td>
+            </tr>
+            <tr>
+                <td>!</td>
+                <td>Staccato</td>
+                <td>Tocar una nota de manera corta y rápida para producir un efecto de separación.</td>
+            </tr>
+            <tr>
+                <td>.</td>
+                <td>Legato</td>
+                <td>Tocar una nota suavemente sin separarla de la siguiente para producir un efecto de conexión.</td>
+            </tr>
+            <tr>
+                <td>+</td>
+                <td>Harmonic pinch</td>
+                <td>Tocar una nota armónica y aplicar una curva hacia arriba para producir un sonido agudo.</td>
+            </tr>
+            <tr>
+                <td>/</td>
+                <td>Whammy bar dip</td>
+                <td>Mover la barra de trémolo hacia abajo para bajar el tono de la nota.</td>
+            </tr>
+            <tr>
+                <td>\</td>
+                <td>Whammy bar dive bomb</td>
+                <td>Mover la barra de trémolo hacia abajo rápidamente para producir un efecto de descenso extremo del tono.</td>
+            </tr>
+            <tr>
+                <td>&gt;&lt;</td>
+                <td>Whammy bar up</td>
+                <td>Mover la barra de trémolo hacia arriba para aumentar el tono de la nota.</td>
+            </tr>
+            <tr>
+                <td>^</td>
+                <td>Bend up</td>
+                <td>Curvar una cuerda hacia arriba para aumentar el tono de la nota.</td>
+            </tr>
+            <tr>
+                <td>^^</td>
+                <td>Bend up two steps</td>
+                <td>Curvar una cuerda hacia arriba para aumentar el tono de la nota dos pasos completos.</td>
+            </tr>
+            <tr>
+                <td>_</td>
+                <td>Bend down</td>
+                <td>Curvar una cuerda hacia abajo para disminuir el tono de la nota.</td>
+            </tr>
+            <tr>
+                <td>__</td>
+                <td>Bend down two steps</td>
+                <td>Curvar una cuerda hacia abajo para disminuir el tono de la nota dos pasos completos.</td>
+            </tr>
+            <tr>
+                <td>(5)</td>
+                <td>Ghost note</td>
+                <td>Tocar una nota sin hacer que suene completamente para crear un efecto de murmullo.</td>
+            </tr>
+            <tr>
+                <td>trill</td>
+                <td>Trill</td>
+                <td>Alternar rápidamente entre dos notas cercanas para crear un efecto de trémolo.</td>
+            </tr>
+            <tr>
+                <td>arp</td>
+                <td>Arpeggio</td>
+                <td>Tocar una serie de notas de una cuerda a la vez en lugar de todas juntas.</td>
+            </tr>
+            <tr>
+                <td>tap</td>
+                <td>Tapping</td>
+                <td>Tocar una nota en un traste superior con el dedo de la mano derecha en lugar de usar una púa.</td>
+            </tr>
+            <tr>
+                <td>rake</td>
+                <td>Rake</td>
+                <td>Tocar varias cuerdas al mismo tiempo con la púa para producir un efecto de rascado.</td>
+            </tr>
+            <tr>
+                <td>pick slide</td>
+                <td>Pick slide</td>
+                <td>Deslizar la púa a lo largo de las cuerdas para producir un efecto de rasguño.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Acordes</h2>
+    <table class="">
+        <thead>
+            <tr>
+                <th>Tipo de acorde</th>
+                <th>Intervalos</th>
+                <th>Descripción</th>
+                <th>Sentimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>major</td>
+                <td>1-3-5</td>
+                <td>Sonido alegre y feliz</td>
+                <td>Felicidad</td>
+            </tr>
+            <tr>
+                <td>minor</td>
+                <td>1-b3-5</td>
+                <td>Sonido melancólico y triste</td>
+                <td>Tristeza</td>
+            </tr>
+            <tr>
+                <td>dim</td>
+                <td>1-b3-b5</td>
+                <td>Sonido inestable y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>dim7</td>
+                <td>1-b3-b5-bb7</td>
+                <td>Sonido disonante y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>sus2</td>
+                <td>1-2-5</td>
+                <td>Sonido abierto y sugerente</td>
+                <td>Suspensión</td>
+            </tr>
+            <tr>
+                <td>sus4</td>
+                <td>1-4-5</td>
+                <td>Sonido tenso y resuelto</td>
+                <td>Tensión/Resolución</td>
+            </tr>
+            <tr>
+                <td>sus2sus4</td>
+                <td>1-2-4-5</td>
+                <td>Sonido ambiguo y enigmático</td>
+                <td>Incertidumbre</td>
+            </tr>
+            <tr>
+                <td>7sus4</td>
+                <td>1-4-5-b7</td>
+                <td>Sonido tenso y misterioso</td>
+                <td>Tensión/Misterio</td>
+            </tr>
+            <tr>
+                <td>alt</td>
+                <td>1-b3-b5-b7-b9-#9</td>
+                <td>Acorde alterado con múltiples tensiones</td>
+                <td>Tensión/Inestabilidad</td>
+            </tr>
+            <tr>
+                <td>aug</td>
+                <td>1-3-#5</td>
+                <td>Sonido brillante y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>1-5</td>
+                <td>Acorde sin tercera, sonido neutro</td>
+                <td>Neutral</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>1-3-5-6</td>
+                <td>Sonido relajado y suave</td>
+                <td>Alegría/Relajación</td>
+            </tr>
+            <tr>
+                <td>69</td>
+                <td>1-3-5-6-9</td>
+                <td>Acorde mayor con sexta y novena</td>
+                <td>Alegría/Relajación</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>1-3-5-b7</td>
+                <td>Sonido tenso y disonante</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>7b5</td>
+                <td>1-3-b5-b7</td>
+                <td>Sonido disonante y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>7/G</td>
+                <td>3-5-b7</td>
+                <td>Acorde de séptima sin la raíz</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>aug7</td>
+                <td>1-3-#5-b7</td>
+                <td>Sonido brillante y disonante</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>1-3-5-b7-9</td>
+                <td>Sonido complejo y rico</td>
+                <td>Complacencia</td>
+            </tr>
+            <tr>
+                <td>9b5</td>
+                <td>1-3-b5-b7-9</td>
+                <td>Sonido inusual y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>aug9</td>
+                <td>1-3-#5-b7-9</td>
+                <td>Sonido brillante y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>7b9</td>
+                <td>1-3-5-b7-b9</td>
+                <td>Sonido tenso y amenazante</td>
+                <td>Amenaza</td>
+            </tr>
+            <tr>
+                <td>7#9</td>
+                <td>1-3-5-b7-#9</td>
+                <td>Sonido tenso y disonante</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>1-3-5-b7-9-11</td>
+                <td>Sonido complejo y rico</td>
+                <td>Complacencia</td>
+            </tr>
+            <tr>
+                <td>9#11</td>
+                <td>1-3-5-b7-9-#11</td>
+                <td>Sonido exótico y sofisticado</td>
+                <td>Sofisticación</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>1-3-5-b7-9-13</td>
+                <td>Sonido complejo y extendido</td>
+                <td>Complacencia</td>
+            </tr>
+            <tr>
+                <td>maj7</td>
+                <td>1-3-5-7</td>
+                <td>Sonido brillante y majestuoso</td>
+                <td>Belleza</td>
+            </tr>
+            <tr>
+                <td>maj7b5</td>
+                <td>1-3-b5-7</td>
+                <td>Sonido exótico y sofisticado</td>
+                <td>Sofisticación</td>
+            </tr>
+            <tr>
+                <td>maj7#5</td>
+                <td>1-3-#5-7</td>
+                <td>Sonido brillante y tenso</td>
+                <td>Tensión</td>
+            </tr>
+            <tr>
+                <td>maj9</td>
+                <td>1-3-5-7-9</td>
+                <td>Sonido complejo y sofisticado</td>
+                <td>Sofisticación</td>
+            </tr>
+            <tr>
+                <td>maj11</td>
+                <td>1-3-5-7-9-11</td>
+                <td>Sonido complejo y sofisticado</td>
+                <td>Sofisticación</td>
+            </tr>
+            <tr>
+                <td>maj13</td>
+                <td>1-3-5-7-9-13</td>
+                <td>Sonido complejo y sofisticado</td>
+                <td>Sofisticación</td>
+            </tr>
+            <tr>
+                <td>m6</td>
+                <td>1-b3-5-6</td>
+                <td>Sonido melancólico y suave</td>
+                <td>Tristeza/Suavidad</td>
+            </tr>
+            <tr>
+                <td>m7</td>
+                <td>1-b3-5-b7</td>
+                <td>Sonido melancólico y suave</td>
+                <td>Tristeza/Suavidad</td>
+            </tr>
+            <tr>
+                <td>m7b5</td>
+                <td>1-b3-b5-b7</td>
+                <td>Sonido oscuro y tenso</td>
+                <td>Tensión/Oscuro</td>
+            </tr>
+            <tr>
+                <td>m9</td>
+                <td>1-b3-5-b7-9</td>
+                <td>Sonido melancólico y sofisticado</td>
+                <td>Melancolía</td>
+            </tr>
+            <tr>
+                <td>m69</td>
+                <td>1-b3-5-6-9</td>
+                <td>Sonido melancólico y suave con sexta</td>
+                <td>Tristeza/Suavidad</td>
+            </tr>
+            <tr>
+                <td>m11</td>
+                <td>1-b3-5-b7-9-11</td>
+                <td>Sonido melancólico y sofisticado</td>
+                <td>Melancolía</td>
+            </tr>
+            <tr>
+                <td>mmaj7</td>
+                <td>1-b3-5-7</td>
+                <td>Sonido melancólico y suave con séptima mayor</td>
+                <td>Tristeza/Suavidad</td>
+            </tr>
+            <tr>
+                <td>mmaj7b5</td>
+                <td>1-b3-b5-7</td>
+                <td>Sonido exótico y sofisticado</td>
+                <td>Sofisticación</td>
+            </tr>
+            <tr>
+                <td>mmaj9</td>
+                <td>1-b3-5-7-9</td>
+                <td>Sonido melancólico y sofisticado con novena</td>
+                <td>Melancolía/Sofisticación</td>
+            </tr>
+            <tr>
+                <td>mmaj11</td>
+                <td>1-b3-5-7-9-11</td>
+                <td>Sonido melancólico y sofisticado con once</td>
+                <td>Melancolía/Sofisticación</td>
+            </tr>
+            <tr>
+                <td>add9</td>
+                <td>1-3-5-9</td>
+                <td>Acorde mayor con novena</td>
+                <td>Alegría</td>
+            </tr>
+            <tr>
+                <td>madd9</td>
+                <td>1-b3-5-9</td>
+                <td>Acorde menor con novena</td>
+                <td>Melancolía</td>
+            </tr>
+            <tr>
+                <td>/E</td>
+                <td>1-5-E</td>
+                <td>Acorde con la tercera en la línea de bajo</td>
+                <td>Inquietud</td>
+            </tr>
+            <tr>
+                <td>/F</td>
+                <td>1-5-F</td>
+                <td>Acorde con la tercera en la línea de bajo</td>
+                <td>Inquietud</td>
+            </tr>
+            <tr>
+                <td>/G</td>
+                <td>1-5-G</td>
+                <td>Acorde con la tercera en la línea de bajo</td>
+                <td>Inquietud</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Estilo musical</h2>
+    <table class="">
+        <thead>
+            <tr>
+                <th>Estilo musical</th>
+                <th>Progresión de acordes</th>
+                <th>Ritmo característico</th>
+                <th>Ritmo tipo</th>
+                <th>Ritmo en notación musical de tiempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Blues</td>
+                <td>I-IV-V</td>
+                <td>Shuffle</td>
+                <td>Negra + Corchea</td>
+                <td>🍞🧀</td>
+            </tr>
+            <tr>
+                <td>Funk</td>
+                <td>I-IV-V</td>
+                <td>Funk</td>
+                <td>Corchea</td>
+                <td>🧀</td>
+            </tr>
+            <tr>
+                <td>Jazz</td>
+                <td>II-V-I</td>
+                <td>Swing</td>
+                <td>Negra + Semicorchea</td>
+                <td>🍞🍫</td>
+            </tr>
+            <tr>
+                <td>Rock</td>
+                <td>I-IV-V</td>
+                <td>Straight</td>
+                <td>Corchea</td>
+                <td>🧀</td>
+            </tr>
+            <tr>
+                <td>Reggae</td>
+                <td>I-IV-V</td>
+                <td>Skank</td>
+                <td>Negra</td>
+                <td>🍞</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>I-IV-V</td>
+                <td>Train beat</td>
+                <td>Negra + Corchea</td>
+                <td>🍞🧀</td>
+            </tr>
+            <tr>
+                <td>Bossa Nova</td>
+                <td>I-VI-VII</td>
+                <td>Bossa nova</td>
+                <td>Negra + Semicorchea</td>
+                <td>🍞🍫</td>
+            </tr>
+            <tr>
+                <td>Salsa</td>
+                <td>II-V-I</td>
+                <td>Montuno</td>
+                <td>Negra + Corchea + Corchea</td>
+                <td>🍞🧀🧀</td>
+            </tr>
+            <tr>
+                <td>Flamenco</td>
+                <td>E-G-A-B-C-D-E-F#-G</td>
+                <td>Soleá</td>
+                <td>Negra + Semicorchea</td>
+                <td>🍞🍫</td>
+            </tr>
+            <tr>
+                <td>Hip-hop</td>
+                <td>Varios</td>
+                <td>Boom bap</td>
+                <td>Negra + Semicorchea</td>
+                <td>🍞🍫</td>
+            </tr>
+            <tr>
+                <td>Metal</td>
+                <td>Varios</td>
+                <td>Palm mute</td>
+                <td>Corchea</td>
+                <td>🧀</td>
+            </tr>
+            <tr>
+                <td>Punk</td>
+                <td>Varios</td>
+                <td>Punk</td>
+                <td>Corchea</td>
+                <td>🧀</td>
+            </tr>
+            <tr>
+                <td>Ska</td>
+                <td>Varios</td>
+                <td>Offbeat</td>
+                <td>Corchea + Corchea + Negra</td>
+                <td>🧀🧀🍞</td>
+            </tr>
+            <tr>
+                <td>Soul</td>
+                <td>I-IV-V</td>
+                <td>16th-note groove</td>
+                <td>Semicorchea</td>
+                <td>🍫</td>
+            </tr>
+            <tr>
+                <td>R&amp;B</td>
+                <td>Varios</td>
+                <td>Slow jam</td>
+                <td>Negra + Negra + Corchea</td>
+                <td>🍞🍞🧀</td>
+            </tr>
+            <tr>
+                <td>Pop</td>
+                <td>Varios</td>
+                <td>Pop</td>
+                <td>Negra</td>
+                <td>🍞</td>
+            </tr>
+            <tr>
+                <td>Electronic</td>
+                <td>Varios</td>
+                <td>4-on-the-floor</td>
+                <td>Negra</td>
+                <td>🍞</td>
+            </tr>
+            <tr>
+                <td>Classical</td>
+                <td>Varios</td>
+                <td>Waltz</td>
+                <td>Negra + Corchea + Corchea</td>
+                <td>🍞🧀🧀</td>
+            </tr>
+            <tr>
+                <td>Bossanova</td>
+                <td>Varios</td>
+                <td>Bossanova</td>
+                <td>Negra + Semicorchea</td>
+                <td>🍞🍫</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>A pentatonic Scale</h2>
+    <table class="chord ">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="dot muralla">3b</span></td>
+            <td></td>
+            <td><span class="dot muralla">4</span></td>
+            <td></td>
+            <td><span class="dot muralla">5</span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="dot mazmorra">7b</span></td>
+            <td></td>
+            <td><span class="dot mazmorra">8</span></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="dot muralla">3b</span></td>
+            <td></td>
+            <td><span class="dot muralla">4</span></td>
+            <td></td>
+            <td><span class="dot muralla">5</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="dot mazmorra">7b</span></td>
+            <td></td>
+            <td><span class="dot mazmorra">8</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><span class="dot muralla">3b</span></td>
+            <td></td>
+            <td><span class="dot muralla">4</span></td>
+            <td></td>
+            <td><span class="dot muralla">5</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="dot torre">1</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+
+</html>
