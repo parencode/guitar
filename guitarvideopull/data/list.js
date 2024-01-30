@@ -24,6 +24,10 @@ let videosJSON = {
       "titulo": "WELLERMAN La Canción Pirata que se hizo viral en TikTok",
       "artista": "Paola Hermosín",
       "enlace": "https://www.youtube.com/watch?v=sFEw1grhqXg"
+    },{
+      "titulo": "Twisted Sister - We're Not Gonna Take it - #cover guitar #トゥイステッドシスター",
+      "artista": "audrey123talks",
+      "enlace": "https://www.youtube.com/watch?v=tXl7UGkMdMU"
     }
   ]
 }
