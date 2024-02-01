@@ -28,6 +28,10 @@ let videosJSON = {
       "titulo": "Twisted Sister - We're Not Gonna Take it - #cover guitar #トゥイステッドシスター",
       "artista": "audrey123talks",
       "enlace": "https://www.youtube.com/watch?v=tXl7UGkMdMU"
+    },{
+      "titulo": "Canon Rock - Jerry C cover by Laura Lace",
+      "artista": "Vi Gi (GUITAR CHANNEL)",
+      "enlace": "https://www.youtube.com/watch?v=XZgiNnGB8m4"
     }
   ]
 }
