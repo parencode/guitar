@@ -131,6 +131,18 @@ let videosJSON = {
       "titulo": "The Wellerman (Sea Shanty) | Metal cover by Red Scorpion Studios",
       "artista": "Red Scorpion Studios",
       "enlace": "https://www.youtube.com/watch?v=2PAj1Va2JLA"
+    },{
+      "titulo": "In Flames - Foregone (Official Full Album Stream)",
+      "artista": "In Flames",
+      "enlace": "https://www.youtube.com/watch?v=BvXQrpuCOKk"
+    },{
+      "titulo": "In Flames – Colony (4K | 1999 | Full Album & Lyrics)",
+      "artista": "Thrash til Death Promotion (4KFullAlbums & Lyrics)",
+      "enlace": "https://www.youtube.com/watch?v=fuidodbYVpY"
+    },{
+      "titulo": "In Flames - Clayman (4K | 2000 | Full Album & Lyrics)",
+      "artista": "Thrash til Death Promotion (4KFullAlbums & Lyrics)",
+      "enlace": "https://www.youtube.com/watch?v=DC5LWfbIygI"
     }
   ]
 }
