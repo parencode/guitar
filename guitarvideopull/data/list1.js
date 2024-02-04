@@ -143,6 +143,14 @@ let videosJSON = {
       "titulo": "In Flames - Clayman (4K | 2000 | Full Album & Lyrics)",
       "artista": "Thrash til Death Promotion (4KFullAlbums & Lyrics)",
       "enlace": "https://www.youtube.com/watch?v=DC5LWfbIygI"
+    },{
+      "titulo": "In Flames - Trigger (Official Music Video)",
+      "artista": "In Flames",
+      "enlace": "https://www.youtube.com/watch?v=_ZK0Db4WWOo"
+    },{
+      "titulo": "Suidakra - Dead Man's Reel",
+      "artista": "Zeba.Poblete",
+      "enlace": "https://www.youtube.com/watch?v=4jLIYEsC-84"
     }
   ]
 }
