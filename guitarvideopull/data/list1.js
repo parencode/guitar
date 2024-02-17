@@ -41,11 +41,6 @@ let videosJSON = {
       "enlace": "https://www.youtube.com/watch?v=0AhFghYZQ74"
     },
     {
-      "titulo": "Levántate Y Lucha | Poderosa Música Orquestal De Batalla | El Poder De La Música Épica",
-      "artista": "Epic Music Mix",
-      "enlace": "https://www.youtube.com/watch?v=XNJf49nn0lw"
-    },
-    {
       "titulo": "El Reno Renardo - Gente Mayor Del Metal (VejeStory Part I)(Videolyric)",
       "artista": "ElRenoRenardo",
       "enlace": "https://www.youtube.com/watch?v=1Hsm6WtDzzI"
