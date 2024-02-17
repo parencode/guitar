@@ -1,9 +1,9 @@
 let videosJSON = {
   "videos": [
-    {
-      "titulo": "AC/DC - You Shook Me All Night Long - Guitar Tab | Lesson | Cover | Tutorial",
-      "artista": "Mr. Tabs",
-      "enlace": "https://www.youtube.com/watch?v=Vj8EQqoizKk"
+     {
+      "titulo": "Beast In Black - Dark Connection (Official Full Album Stream)",
+      "artista": "Beast In Black",
+      "enlace": "https://www.youtube.com/watch?v=7NyON-NzBr4"
     },
     {
       "titulo": "Scorpions - Rock You Like A Hurricane (cover by Sershen&Zaritskaya feat. @VioletOrlandi)",
@@ -29,11 +29,6 @@ let videosJSON = {
       "titulo": "Morrison’s Jig | FOLK METAL VERSION by Vincent Moretto",
       "artista": "Vincent Moretto",
       "enlace": "https://www.youtube.com/watch?v=szRUnUxeXFs"
-    },
-    {
-      "titulo": "Beast In Black - Dark Connection (Official Full Album Stream)",
-      "artista": "Beast In Black",
-      "enlace": "https://www.youtube.com/watch?v=7NyON-NzBr4"
     },
     {
       "titulo": "Miss Monique - MiMo Podcast 042 [Melodic Techno & House DJ Mix]",
@@ -86,16 +81,6 @@ let videosJSON = {
       "enlace": "https://www.youtube.com/watch?v=glx-q9gMOqc"
     },
     {
-      "titulo": "Morrison's Jig",
-      "artista": "Drumspyder",
-      "enlace": "https://www.youtube.com/watch?v=bQepke7roxo"
-    },
-    {
-      "titulo": "Morrison's Jig",
-      "artista": "The Irish Experience",
-      "enlace": "https://www.youtube.com/watch?v=2RE-aD5lYdU"
-    },
-    {
       "titulo": "Ring Of Fire - Johnny Cash & Dj Serj Moldova (remix)",
       "artista": "Dj Serj Moldova",
       "enlace": "https://www.youtube.com/watch?v=9VKjxWcd96s"
@@ -111,18 +96,6 @@ let videosJSON = {
       "enlace": "https://www.youtube.com/watch?v=I_2D8Eo15wE"
     },
     {
-      "titulo": "The HU - Wolf Totem (Official Music Video)",
-      "artista": "The HU",
-      "enlace": "https://www.youtube.com/watch?v=jM8dCGIm6yc"
-    },{
-      "titulo": "The Wellerman + TAB (Brian May Version - Guitar Tutorial)",
-      "artista": "Guillaume Vrac",
-      "enlace": "https://www.youtube.com/watch?v=i8SpYH1NF6U"
-    },{
-      "titulo": "WELLERMAN La Canción Pirata que se hizo viral en TikTok",
-      "artista": "Paola Hermosín",
-      "enlace": "https://www.youtube.com/watch?v=sFEw1grhqXg"
-    },{
       "titulo": "The Wellerman (Sea Shanty) | Metal cover by Red Scorpion Studios",
       "artista": "Red Scorpion Studios",
       "enlace": "https://www.youtube.com/watch?v=2PAj1Va2JLA"
