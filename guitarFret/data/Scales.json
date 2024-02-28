@@ -46,12 +46,12 @@
                "Group": "Common"
                },
                {
-               "Name": "Do Re Mi",
+               "Name": "1 2 3",
                "Value": "1;3;5",
                "Group": "Intervals"
                },
                {
-               "Name": "Do Mi Sol",
+               "Name": "1 3 5 / CAGED",
                "Value": "1;5;8",
                "Group": "Intervals"
                },
