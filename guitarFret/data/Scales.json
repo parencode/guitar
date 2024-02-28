@@ -51,6 +51,11 @@
                "Group": "Intervals"
                },
                {
+               "Name": "Do Mi Sol",
+               "Value": "1;5;8",
+               "Group": "Intervals"
+               },
+               {
                "Name": "Do Re Wholetone",
                "Value": "1;3",
                "Group": "Intervals"
