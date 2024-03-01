@@ -46,15 +46,16 @@
                "Group": "Common"
                },
                {
+               "Name": "Major Third Fifth Interval",
+               "Value": "1;5;8",
+               "Group": "Intervals"
+               },
+               {
                "Name": "Do Re Mi",
                "Value": "1;3;5",
                "Group": "Intervals"
                },
-               {
-               "Name": "CAGED",
-               "Value": "1;5;8",
-               "Group": "Intervals"
-               },
+              
                {
                "Name": "Do Re Wholetone",
                "Value": "1;3",
